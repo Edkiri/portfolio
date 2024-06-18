@@ -61,34 +61,56 @@ const projects = [
     link: '',
   },
 ]; 
+
+const styles = {
+  titleText: 'text-black dark:text-white',
+
+}
 </script>
 
 <template>
-  <div class="flex flex-col gap-12">
+  <div class="flex flex-col gap-16">
     <div v-for="project in projects" class="flex">
-      <p class="text-neutral-500 text-base min-w-36">{{ project.years }}</p>
-      <div class="flex flex-col gap-2">
-        
-        <h4 v-if="!project.link" class="text-white text-base">{{ project.title }}</h4>
-        <a v-else target="_blank" class="text-white text-base hover:underline hover:text-neutral-300" :href="project.link">{{ project.title }}<i class="pi pi-arrow-up-right ml-1" style="color: rgb(115, 115, 115); font-size: 10px"></i></a>
-        <p class="text-neutral-400 text-base">{{ project.description }}</p>
-        <div class="flex flex-col gap-1">
-          <a target="_blank" class="group mt-1 flex items-center gap-2" :href="project.backendLink">
-            <i class="pi pi-github" style="color: rgb(163 163 163);"></i>
-            <p class="text-base text-neutral-400 group-hover:underline group-hover:text-neutral-300">
-              {{ project.frontendTools.length ? 'Backend' :  'Repositorio' }}
+      <div class="flex flex-col gap-2 w-full">
+        <div class="title flex gap-2 justify-between">
+          <h4 v-if="!project.link" :class="'text-base ' + styles.titleText">{{ project.title }}</h4>
+          <a v-else target="_blank" :class="'text-base hover:underline hover:text-neutral-900 dark:hover:text-neutral-900' + styles.titleText" :href="project.link">{{ project.title }}<i class="pi pi-arrow-up-right ml-1" style="color: rgb(115, 115, 115); font-size: 10px"></i></a>
+          <p class="text-neutral-700 dark:text-neutral-300 text-base">{{ project.years }}</p>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400 text-base">{{ project.description }}</p>
+        <div class="flex flex-col gap-3 mt-2">
+          <div class="flex flex-col gap-1">
+            <a target="_blank" class="mt-1 flex items-center gap-2" :href="project.backendLink">
+              <i class="pi pi-github" style="color: rgb(163 163 163);"></i>
+              <p class="text-base text-neutral-700 dark:text-neutral-400 hover:underline hover:text-neutral-900 dark:hover:text-neutral-300">
+                {{ project.frontendTools.length ? 'Backend' :  'Repositorio' }}
+              </p>
+              <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 10px"></i>
+            </a>
+            <div class="flex gap-1">
+              <p 
+              class="text-neutral-700 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800 rounded-full px-3 inline-block " 
+              v-for="tool in project.backendTools">
+              {{ tool }}
             </p>
-            <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 10px"></i>
-          </a>
-          <p class="text-base text-neutral-500">{{ project.backendTools.join(" - ") }}</p>
-          <a v-if="project.frontendTools.length" target="_blank" class="group mt-1 flex items-center gap-2" :href="project.frontendLink">
-            <i class="pi pi-github" style="color: rgb(163 163 163);"></i>
-            <p class="text-base text-neutral-400 group-hover:underline group-hover:text-neutral-300">
-              Frontend
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <a v-if="project.frontendTools.length" target="_blank" class="mt-1 flex items-center gap-2" :href="project.frontendLink">
+              <i class="pi pi-github" style="color: rgb(163 163 163);"></i>
+              <p class="text-base text-neutral-700 dark:text-neutral-400 hover:underline hover:text-neutral-900 dark:hover:text-neutral-300">
+                Frontend
+              </p>
+              <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 10px"></i>
+            </a>
+            <div class="flex gap-1">
+              <p 
+              class="text-neutral-700 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800 rounded-full px-3 inline-block " 
+              v-for="tool in project.frontendTools">
+              {{ tool }}
             </p>
-            <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 10px"></i>
-          </a>
-          <p class="text-base text-neutral-500">{{ project.frontendTools.join(" - ") }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
