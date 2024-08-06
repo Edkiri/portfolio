@@ -3,6 +3,7 @@ import { computed } from 'vue';
 
 const projects = [
   {
+    id: 1,
     title: 'Cash Save',
     description: 'Esta plataforma permite a los usuarios gestionar sus gastos, ingresos y deudas, clasificándolos según su fuente.',
     years: '2024',
@@ -14,6 +15,7 @@ const projects = [
     image: 'app-dark.png',
   },
   {
+    id: 2,
     title: 'Sistema de Punto de Venta - Web',
     description: 'App web para la gestión de ventas e inventario de productos.',
     years: '2023 - ahora',
@@ -25,6 +27,7 @@ const projects = [
     image: '',
   },
   {
+    id: 3,
     title: 'Sistema de Punto de Venta - Desktop',
     description: 'Desktop app para la gestión de ventas e inventario de productos.',
     years: '2021 - 2023',
@@ -36,6 +39,7 @@ const projects = [
     image: '',
   },
   {
+    id: 4,
     title: 'Organizador de tareas',
     description: 'Es un clon de Microsoft Todo App. Permite a los usuarios crear listas y tareas; mover, borrar, completar tareas, marcar fecha límite...',
     years: '2023',
@@ -47,6 +51,7 @@ const projects = [
     image: '',
   },
   {
+    id: 5,
     title: 'Mastermind',
     description: 'Simulador web del juego de mesa Mastermind.',
     years: '2023',
@@ -55,9 +60,10 @@ const projects = [
     frontendTools: [],
     frontendLink: '',
     link: 'https://edkiri.github.io/mastermind/',
-    image: '',
+    image: 'mastermind.png',
   },
   {
+    id: 6,
     title: 'Quinielas',
     description: 'Esta aplicación permite a los usuarios crear grupos, predecir resultados de partidos de fútbol, ganar puntos por aciertos y competir entre sí. También pueden enviar y recibir invitaciones para unirse a grupos.',
     years: '2022',
@@ -94,8 +100,9 @@ const saveCashImage = computed(() => {
         </div>
         <p class="text-neutral-800 dark:text-neutral-200 text-base">{{ project.description }}</p>
         
-        <a target="_blank" class="w-full" :href="project.link">
-          <img v-if="project.image" class="w-full my-2 rounded-md" :src="`/${saveCashImage}`" alt="cash save app">
+        <a v-if="project.image" target="_blank" class="w-full" :href="project.link">
+          <img v-if="project.id === 1" class="w-full px-8 my-2 rounded-md" :src="`/${saveCashImage}`" alt="cash save app">
+          <img v-if="project.id === 5" class="w-[300px] mx-auto my-2 rounded-md" :src="`/${project.image}`" alt="mastermind online">
         </a>
 
         <div class="flex flex-col gap-4 mt-2">

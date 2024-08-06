@@ -22,9 +22,6 @@ function changeTheme() {
   }
 }
 
-const styles = {
-  mainText: 'text-2xl text-black dark:text-white'
-} 
 </script>
 
 <template>
