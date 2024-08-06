@@ -23,16 +23,16 @@ function changeTheme() {
 }
 
 const styles = {
-  mainText: 'text-lg text-black dark:text-white'
+  mainText: 'text-2xl text-black dark:text-white'
 } 
 </script>
 
 <template>
-  <header class="flex justify-between items-center">
+  <header class="max-w-2xl mx-auto flex justify-between items-center">
     <div class="flex gap-4 items-center">
       <Icon />
       <h1 class="text-2xl text-black dark:text-white">Mis proyectos</h1>
-      <span class="ml-8 text-2xl text-black dark:text-white">Venezuela libre 🇻🇪 ❤️</span>
+      <span class="ml-8 text-xl text-black dark:text-white">Venezuela libre 🇻🇪 ❤️</span>
     </div>
 
     <button 
@@ -46,7 +46,7 @@ const styles = {
     </button>
   </header>
 
-  <main class="max-w-2xl m-auto mt-4 flex flex-col">
+  <main class="max-w-2xl mx-auto mt-8 flex flex-col">
 
     <div class="profile-container flex flex-col">
       <ProfileCard />
@@ -54,9 +54,9 @@ const styles = {
     </div>
 
     <div class="projects-container">
-      <h3 :class="styles.mainText">Proyectos</h3>
+      <h3 class="text-2xl text-blue-500 font-semibold">Proyectos</h3>
 
-      <ProjectsList class="mt-4" />
+      <ProjectsList :theme="theme" class="mt-4" />
     </div>
     
   </main>

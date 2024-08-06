@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+
 const projects = [
   {
     title: 'Cash Save',
@@ -9,6 +11,7 @@ const projects = [
     frontendTools: ['Vite', 'Vue', 'Typescript', 'Pinia', 'Tailwind'],
     frontendLink: 'https://github.com/Edkiri/personal-finance-front',
     link: 'https://cashsave.eduardok.site',
+    image: 'app-dark.png',
   },
   {
     title: 'Sistema de Punto de Venta - Web',
@@ -19,6 +22,7 @@ const projects = [
     frontendTools: ['Vite', 'Vue', 'Typescript', 'Tailwind'],
     frontendLink: 'https://github.com/Edkiri/sales-ui',
     link: '',
+    image: '',
   },
   {
     title: 'Sistema de Punto de Venta - Desktop',
@@ -29,6 +33,7 @@ const projects = [
     frontendTools: [],
     frontendLink: '',
     link: '',
+    image: '',
   },
   {
     title: 'Organizador de tareas',
@@ -39,6 +44,7 @@ const projects = [
     frontendTools: ['Vite', 'React', 'Typescript', 'TanStack Query', 'Material UI'],
     frontendLink: 'https://github.com/Edkiri/task-ui',
     link: '',
+    image: '',
   },
   {
     title: 'Mastermind',
@@ -49,6 +55,7 @@ const projects = [
     frontendTools: [],
     frontendLink: '',
     link: 'https://edkiri.github.io/mastermind/',
+    image: '',
   },
   {
     title: 'Quinielas',
@@ -59,53 +66,66 @@ const projects = [
     frontendTools: ['React'],
     frontendLink: 'https://github.com/Edkiri/predikete-ui',
     link: '',
+    image: '',
   },
 ]; 
 
-const styles = {
-  titleText: 'text-black dark:text-white',
+const props = defineProps({
+  theme: {
+    type: String,
+    required: false,
+  },
+});
 
-}
+const saveCashImage = computed(() => {
+  return props.theme === 'dark' ? 'cash-save-dark.png' : 'cash-save-light.png'; 
+});
+
 </script>
 
 <template>
-  <div class="flex flex-col gap-16">
-    <div v-for="project in projects" class="flex">
+  <div class="flex flex-col gap-8">
+    <div v-for="project in projects" class="flex border-2 rounded-md border-neutral-300 dark:border-neutral-700 p-6 ">
       <div class="flex flex-col gap-2 w-full">
         <div class="title flex gap-2 justify-between">
-          <h4 v-if="!project.link" :class="'text-base ' + styles.titleText">{{ project.title }}</h4>
-          <a v-else target="_blank" :class="'text-base hover:underline hover:text-neutral-900 dark:hover:text-neutral-900' + styles.titleText" :href="project.link">{{ project.title }}<i class="pi pi-arrow-up-right ml-1" style="color: rgb(115, 115, 115); font-size: 10px"></i></a>
-          <p class="text-neutral-700 dark:text-neutral-300 text-base">{{ project.years }}</p>
+          <h4 v-if="!project.link" :class="'text-xl font-semibold text-black dark:text-white'">{{ project.title }}</h4>
+          <a v-else target="_blank" :class="'text-xl font-semibold hover:underline text-black dark:text-white'" :href="project.link">{{ project.title }}<i class="pi pi-arrow-up-right ml-1" style="color: rgb(115, 115, 115); font-size: 14px; margin-left: 8px;"></i></a>
+          <p class="text-neutral-800 dark:text-neutral-200 text-lg">{{ project.years }}</p>
         </div>
-        <p class="text-neutral-600 dark:text-neutral-400 text-base">{{ project.description }}</p>
-        <div class="flex flex-col gap-3 mt-2">
-          <div class="flex flex-col gap-1">
+        <p class="text-neutral-800 dark:text-neutral-200 text-base">{{ project.description }}</p>
+        
+        <a target="_blank" class="w-full" :href="project.link">
+          <img v-if="project.image" class="w-full my-2 rounded-md" :src="`/${saveCashImage}`" alt="cash save app">
+        </a>
+
+        <div class="flex flex-col gap-4 mt-2">
+          <div class="flex flex-col gap-2">
             <a target="_blank" class="mt-1 flex items-center gap-2" :href="project.backendLink">
               <i class="pi pi-github" style="color: rgb(163 163 163);"></i>
-              <p class="text-base text-neutral-700 dark:text-neutral-400 hover:underline hover:text-neutral-900 dark:hover:text-neutral-300">
+              <p class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 hover:underline hover:text-neutral-900 dark:hover:text-neutral-300">
                 {{ project.frontendTools.length ? 'Backend' :  'Repositorio' }}
               </p>
-              <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 10px"></i>
+              <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 14px"></i>
             </a>
-            <div class="flex gap-1">
+            <div class="flex gap-2">
               <p 
-              class="text-neutral-700 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800 rounded-full px-3 inline-block " 
-              v-for="tool in project.backendTools">
-              {{ tool }}
+                class="text-neutral-800 dark:text-neutral-200 bg-neutral-200 dark:bg-neutral-800 rounded-full px-3 inline-block " 
+                v-for="tool in project.backendTools">
+                {{ tool }}
             </p>
             </div>
           </div>
-          <div class="flex flex-col gap-1">
+          <div class="flex flex-col gap-2">
             <a v-if="project.frontendTools.length" target="_blank" class="mt-1 flex items-center gap-2" :href="project.frontendLink">
               <i class="pi pi-github" style="color: rgb(163 163 163);"></i>
-              <p class="text-base text-neutral-700 dark:text-neutral-400 hover:underline hover:text-neutral-900 dark:hover:text-neutral-300">
+              <p class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 hover:underline hover:text-neutral-900 dark:hover:text-neutral-300">
                 Frontend
               </p>
-              <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 10px"></i>
+              <i class="pi pi-arrow-up-right" style="color: rgb(115, 115, 115); font-size: 14px"></i>
             </a>
-            <div class="flex gap-1">
+            <div class="flex gap-2">
               <p 
-              class="text-neutral-700 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800 rounded-full px-3 inline-block " 
+              class="text-neutral-800 dark:text-neutral-200 bg-neutral-200 dark:bg-neutral-800 rounded-full px-3 inline-block " 
               v-for="tool in project.frontendTools">
               {{ tool }}
             </p>
