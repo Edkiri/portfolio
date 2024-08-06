@@ -1,14 +1,14 @@
 <script setup>
 const projects = [
   {
-    title: 'Personal finance balance',
+    title: 'Cash Save',
     description: 'Esta plataforma permite a los usuarios gestionar sus gastos, ingresos y deudas, clasificándolos según su fuente.',
     years: '2024',
     backendTools: ['Nestjs', 'Postgres', 'Sequelize'],
     backendLink: 'https://github.com/Edkiri/personal-finance-api',
     frontendTools: ['Vite', 'Vue', 'Typescript', 'Pinia', 'Tailwind'],
     frontendLink: 'https://github.com/Edkiri/personal-finance-front',
-    link: '',
+    link: 'https://cashsave.eduardok.site',
   },
   {
     title: 'Sistema de Punto de Venta - Web',
