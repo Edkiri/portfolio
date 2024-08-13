@@ -29,7 +29,6 @@ function changeTheme() {
     <div class="flex gap-4 items-center">
       <Icon />
       <h1 class="text-2xl text-black dark:text-white">Mis proyectos</h1>
-      <span class="ml-8 text-xl text-black dark:text-white">Venezuela libre 🇻🇪 ❤️</span>
     </div>
 
     <button 
